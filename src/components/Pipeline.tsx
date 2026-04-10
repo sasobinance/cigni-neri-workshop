@@ -12,11 +12,11 @@ const FASE_STYLE: Record<string, { bg: string; color: string }> = {
   'Closing':           { bg: '#F3E5F5', color: '#6A1B9A' },
 }
 
-function semaforo(g: number) {
-  if (g <= 7)  return { label: 'Urgente',    color: '#C0392B', bg: '#FDECEA' }
-  if (g <= 14) return { label: 'Critico',    color: '#9A4B00', bg: '#FFF3E0' }
-  if (g <= 30) return { label: 'Attenzione', color: '#7A6B00', bg: '#FFFDE7' }
-  return        { label: 'Ok',           color: '#2E7D32', bg: '#E8F5E9' }
+function semaforo(priorita: string) {
+  if (priorita === 'Urgentissimo') return { label: 'Urgentissimo', color: '#C0392B', bg: '#FDECEA' }
+  if (priorita === 'Critico')      return { label: 'Critico',      color: '#9A4B00', bg: '#FFF3E0' }
+  if (priorita === 'Attenzione')   return { label: 'Attenzione',   color: '#7A6B00', bg: '#FFFDE7' }
+  return                                  { label: 'Ok',           color: '#2E7D32', bg: '#E8F5E9' }
 }
 
 function MetricCard({ label, value, sub, danger }: { label: string; value: string; sub: string; danger?: boolean }) {
@@ -139,13 +139,14 @@ export default function Pipeline() {
           <div style={{ padding: '2rem', textAlign: 'center', color: '#8A8A85', fontSize: 13 }}>Nessuna pratica trovata</div>
         )}
         {filtered.map(p => {
-          const sem = semaforo(p.giorni)
+          const sem = semaforo(p.priorita)
           const fase = FASE_STYLE[p.fase] ?? { bg: '#F2F2F0', color: '#3A3A38' }
           const pc = PILL_COLORS[p.resp]
+          const isUrgent = p.priorita === 'Urgentissimo'
           return (
             <div key={p.id} style={{
               background: '#fff', borderRadius: 10,
-              border: p.giorni <= 7 ? '1px solid #F0C0BB' : '0.5px solid #E4E4E0',
+              border: isUrgent ? '1px solid #F0C0BB' : '0.5px solid #E4E4E0',
               padding: '12px 14px',
             }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 8 }}>
@@ -161,8 +162,9 @@ export default function Pipeline() {
               </div>
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, alignItems: 'center' }}>
                 <span style={{ padding: '3px 9px', borderRadius: 999, fontSize: 10, fontWeight: 700, background: fase.bg, color: fase.color }}>{p.fase}</span>
-                <span style={{ padding: '3px 9px', borderRadius: 999, fontSize: 10, fontWeight: 700, background: sem.bg, color: sem.color }}>{sem.label} · {p.giorni}gg · {p.scad}</span>
+                <span style={{ padding: '3px 9px', borderRadius: 999, fontSize: 10, fontWeight: 700, background: sem.bg, color: sem.color }}>{sem.label} · scad. {p.scad}</span>
                 <span style={{ padding: '3px 9px', borderRadius: 999, fontSize: 10, fontWeight: 700, background: pc?.bg, color: pc?.text, border: `1px solid ${pc?.border}` }}>{p.resp}</span>
+                <span style={{ padding: '3px 9px', borderRadius: 999, fontSize: 10, fontWeight: 600, background: '#F4F8F5', color: '#4A7C59' }}>peso {p.peso}</span>
               </div>
               {p.note && (
                 <div style={{ fontSize: 11, color: '#8A8A85', marginTop: 8, lineHeight: 1.4, borderTop: '0.5px solid #F0F0EC', paddingTop: 8 }}>{p.note}</div>
