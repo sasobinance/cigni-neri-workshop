@@ -67,71 +67,218 @@ export const TEAM: TeamMember[] = [
   {nome:"Graziano",  stato:"Attivo", capacitaMax:10, caricoAttuale:5, taskAperte:4, saturazionePct:50, semaforoTeam:"Ok"},
 ]
 
+export const DASHBOARD = {
+  pratiche_urgenti: 7,
+  urgentissimo: 2,
+  critico: 5,
+  team_attenzione: 1,
+  sovraccarichi: 0,
+  assenti: 0,
+  saturazione_media: 55.7,
+  top_urgenze: [
+    {id:"BSC-001", cliente:"Gruppo Ferretti SpA",    priorita:"Urgentissimo", scad:"22/04/2026", resp:"Saso"},
+    {id:"BSC-016", cliente:"Banca Regionale Centro",  priorita:"Urgentissimo", scad:"25/04/2026", resp:"Giampaolo"},
+    {id:"BSC-006", cliente:"Orion Capital Partners",  priorita:"Critico",      scad:"26/04/2026", resp:"Carlo"},
+    {id:"BSC-003", cliente:"Famiglia Albrizzi",       priorita:"Critico",      scad:"28/04/2026", resp:"Gianluca"},
+    {id:"BSC-023", cliente:"Hedge Fund Zurigo",       priorita:"Critico",      scad:"28/04/2026", resp:"Giampaolo"},
+    {id:"BSC-011", cliente:"Luxoro Holding SA",       priorita:"Critico",      scad:"30/04/2026", resp:"Francesco"},
+    {id:"BSC-028", cliente:"Startup Mobility Roma",   priorita:"Critico",      scad:"30/04/2026", resp:"Graziano"},
+  ]
+}
+
 export type RedistribRow = {
   id: string; cliente: string; da: string; a: string
   priorita: string; peso: number; caricoPost: number; saturazionePost: string
 }
 
 export const REDISTRIB_PREVIEW: RedistribRow[] = [
-  {id:"BSC-001",cliente:"Gruppo Ferretti SpA",    da:"Saso",resp:"Saso",a:"—",         priorita:"Urgentissimo",peso:3,caricoPost:0,  saturazionePost:"nessun assegnatario"},
-  {id:"BSC-008",cliente:"Mediobanca Private",      da:"Saso",resp:"Saso",a:"Carlo",     priorita:"Ok",          peso:1,caricoPost:6,  saturazionePost:"60%"},
-  {id:"BSC-022",cliente:"Consorzio Agri Piemonte", da:"Saso",resp:"Saso",a:"Francesco", priorita:"Ok",          peso:1,caricoPost:6,  saturazionePost:"60%"},
-  {id:"BSC-029",cliente:"Ceramiche Vietri Srl",    da:"Saso",resp:"Saso",a:"Gianluca",  priorita:"Ok",          peso:1,caricoPost:6,  saturazionePost:"60%"},
-  {id:"BSC-015",cliente:"Cantieri Navali Trieste",  da:"Saso",resp:"Saso",a:"Graziano",  priorita:"Ok",          peso:1,caricoPost:6,  saturazionePost:"60%"},
-] as any
+  {id:"BSC-001",cliente:"Gruppo Ferretti SpA",    da:"Saso",a:"—",         priorita:"Urgentissimo",peso:3,caricoPost:0, saturazionePost:"nessun assegnatario"},
+  {id:"BSC-008",cliente:"Mediobanca Private",      da:"Saso",a:"Carlo",     priorita:"Ok",          peso:1,caricoPost:6, saturazionePost:"60%"},
+  {id:"BSC-022",cliente:"Consorzio Agri Piemonte", da:"Saso",a:"Francesco", priorita:"Ok",          peso:1,caricoPost:6, saturazionePost:"60%"},
+  {id:"BSC-029",cliente:"Ceramiche Vietri Srl",    da:"Saso",a:"Gianluca",  priorita:"Ok",          peso:1,caricoPost:6, saturazionePost:"60%"},
+  {id:"BSC-015",cliente:"Cantieri Navali Trieste",  da:"Saso",a:"Graziano",  priorita:"Ok",          peso:1,caricoPost:6, saturazionePost:"60%"},
+]
 
 export const PIANO_TEST = [
-  {num:"1",scenario:"Peso da Priorità",   azione:"Cambia una riga da «Ok» a «Critico» in colonna Priorità.",                                          esito:"La colonna Peso passa da 1 a 2; nel tab Team aumenta il carico del responsabile."},
-  {num:"2",scenario:"Semaforo persona",   azione:"Porta un responsabile vicino alla capacità massima o abbassa la sua capacità in Team.",               esito:"La saturazione % sale e il semaforo team passa a Attenzione o Sovraccarico."},
-  {num:"3",scenario:"Assenza simulata",   azione:"Nel tab Team imposta Saso = Assente e lancia «Simula redistribuzione assenti».",                      esito:"Nel tab Test Preview compaiono le pratiche di Saso con il nuovo responsabile suggerito, senza modificare la pipeline."},
-  {num:"4",scenario:"Assenza live",       azione:"Con Saso ancora Assente, lancia «Redistribuisci pratiche assenti».",                                  esito:"Le pratiche riassegnabili cambiano owner in Pipeline Pratiche; il Log si popola."},
-  {num:"5",scenario:"Email scadenze",     azione:"Lancia «Invia report scadenze».",                                                                     esito:"Arriva una mail con le pratiche Urgentissimo/Critico e i giorni mancanti."},
+  {num:"1",scenario:"Peso da Priorità",  azione:"Cambia una riga da «Ok» a «Critico» in colonna Priorità.",                                        esito:"La colonna Peso passa da 1 a 2; nel tab Team aumenta il carico del responsabile."},
+  {num:"2",scenario:"Semaforo persona",  azione:"Porta un responsabile vicino alla capacità massima o abbassa la sua capacità in Team.",             esito:"La saturazione % sale e il semaforo team passa a Attenzione o Sovraccarico."},
+  {num:"3",scenario:"Assenza simulata",  azione:"Nel tab Team imposta Saso = Assente e lancia «Simula redistribuzione assenti».",                    esito:"Nel tab Test Preview compaiono le pratiche di Saso con il nuovo responsabile suggerito, senza modificare la pipeline."},
+  {num:"4",scenario:"Assenza live",      azione:"Con Saso ancora Assente, lancia «Redistribuisci pratiche assenti».",                               esito:"Le pratiche riassegnabili cambiano owner in Pipeline Pratiche; il Log si popola."},
+  {num:"5",scenario:"Email scadenze",    azione:"Lancia «Invia report scadenze».",                                                                   esito:"Arriva una mail con le pratiche Urgentissimo/Critico e i giorni mancanti."},
 ]
 
 export const COLONNE = [
-  {letter:"A",name:"ID pratica",      desc:"Codice univoco",          explain:"Ogni contratto ha un codice univoco (es. BSC-001). Serve per riferirsi a una pratica senza ambiguità in email, telefonate e riunioni.",                                                                  bad:"Senza: «quella cosa di Ferretti» — quale delle tre pratiche Ferretti? Nessuno lo sa."},
-  {letter:"B",name:"Cliente",         desc:"Nome del cliente",        explain:"Chi ha incaricato Black Swan Capital. Il nome deve essere quello legale esatto — distingue Albrizzi SpA da Albrizzi Holding.",                                                                              bad:"Un socio confonde due soggetti giuridici diversi. Conseguenze legali enormi."},
-  {letter:"C",name:"Tipo operazione", desc:"Categoria M&A",           explain:"Acquisizione, fusione, carve-out, LBO, passaggio generazionale… Ogni tipo ha iter legale, tempi e rischi diversi.",                                                                                       bad:"Un junior tratta un LBO come un'acquisizione semplice. Il leverage non viene strutturato. Il deal salta."},
-  {letter:"D",name:"Valore deal",     desc:"Importo in milioni €",    explain:"Determina la fee dello studio, la priorità del team, le risorse allocate. Un deal da €800M non può avere lo stesso presidio di uno da €12M.",                                                              bad:"Un socio dedica 3 giorni a un deal da €18M e ignora quello da €680M. Fee persa, cliente perso."},
-  {letter:"E",name:"Fase",            desc:"Stadio del processo",     explain:"Onboarding → Lettera d'intenti → Term Sheet → Due Diligence → Negoziazione → Signing → Closing. Ogni fase ha scadenze e rischi specifici.",                                                               bad:"Nessuno sa se la DD è finita o in corso. Il cliente chiede aggiornamenti, lo studio non sa rispondere."},
-  {letter:"F",name:"Socio ref.",      desc:"Socio responsabile",      explain:"Il socio che risponde al cliente. È la persona che firma, va alle riunioni di board, prende le decisioni finali.",                                                                                         bad:"Il cliente chiama, tre soci danno tre risposte diverse. Credibilità azzerata."},
-  {letter:"G",name:"Responsabile",    desc:"Chi la gestisce",         explain:"Chi segue la pratica giorno per giorno. Questa è la colonna usata per i filter view e per la redistribuzione automatica.",                                                                                bad:"Una scadenza slitta perché «pensavo ci pensasse lui». Lo studio risponde con soldi e reputazione."},
-  {letter:"H",name:"Data apertura",   desc:"Inizio pratica",          explain:"Serve per capire se una pratica è bloccata da troppo tempo e per la pianificazione delle risorse.",                                                                                                        bad:"Una pratica aperta 18 mesi fa viene scoperta casualmente. Rischio contenzioso."},
-  {letter:"I",name:"Scadenza",        desc:"Data limite",             explain:"La data entro cui deve succedere qualcosa di preciso. Spesso è un termine perentorio con penali contrattuali.",                                                                                            bad:"La scadenza passa. La controparte attiva una penale da €500K. Lo studio paga."},
-  {letter:"J",name:"Giorni alla scad.",desc:"=I-TODAY()",            explain:"La formula =I5-TODAY() calcola automaticamente i giorni rimanenti ogni volta che si apre il foglio.",                                                                                                       bad:"Qualcuno aggiorna a mano ogni settimana. Si dimentica. Si sbaglia."},
-  {letter:"K",name:"Semaforo",        desc:"Formula IF annidata",     explain:"La formula IF legge i giorni: Urgentissimo (≤7), Critico (≤14), Attenzione (≤30), Ok. Il foglio decide da solo.",                                                                                         bad:"Ogni lunedì un paralegal scorre 30 righe manualmente. 40 minuti persi, errori garantiti."},
-  {letter:"L",name:"Fee stimata",     desc:"Compenso previsto",       explain:"Il compenso atteso da quella pratica. Serve per la pianificazione finanziaria.",                                                                                                                           bad:"Il managing partner scopre il gap di budget a bilancio chiuso."},
-  {letter:"M",name:"Note operative",  desc:"Contesto libero",         explain:"Tutto quello che non entra nelle colonne strutturate. È la memoria operativa del team.",                                                                                                                  bad:"Un nuovo collaboratore commette una gaffe con il cliente. Il contesto era in testa al socio."},
-  {letter:"N",name:"Priorità",        desc:"Urgentissimo/Critico/Ok", explain:"Categoria di urgenza. Alimenta il sistema di redistribuzione automatica e il calcolo del Peso.",                                                                                                          bad:"Ogni lunedì la riunione dura 45 minuti per decidere cosa è urgente. Con questa colonna: 3 minuti."},
-  {letter:"O",name:"Peso",            desc:"1–3 da priorità",         explain:"Valore numerico della pratica per il calcolo della saturazione del team. Urgentissimo=3, Critico=2, Attenzione/Ok=1. È il cuore del bilanciamento automatico.",                                           bad:"Senza peso: il sistema non distingue chi gestisce una pratica da €890M da chi ne gestisce una da €12M."},
-  {letter:"P",name:"Riassegnabile",   desc:"Sì / No",                 explain:"Se la pratica può essere redistribuita automaticamente in caso di assenza del responsabile. Alcune pratiche sono troppo riservate per essere passate automaticamente.",                                    bad:"Senza: lo script tenta di redistribuire anche pratiche riservate o bloccate. Errori critici."},
+  {letter:"A",name:"ID pratica",      desc:"Codice univoco",          explain:"Ogni contratto ha un codice univoco (es. BSC-001). Serve per riferirsi a una pratica senza ambiguità in email, telefonate e riunioni.",                                                                 bad:"Senza: «quella cosa di Ferretti» — quale delle tre pratiche Ferretti? Nessuno lo sa."},
+  {letter:"B",name:"Cliente",         desc:"Nome del cliente",        explain:"Chi ha incaricato Black Swan Capital. Il nome deve essere quello legale esatto — distingue Albrizzi SpA da Albrizzi Holding.",                                                                             bad:"Un socio confonde due soggetti giuridici diversi. Conseguenze legali enormi."},
+  {letter:"C",name:"Tipo operazione", desc:"Categoria M&A",           explain:"Acquisizione, fusione, carve-out, LBO, passaggio generazionale… Ogni tipo ha iter legale, tempi e rischi diversi.",                                                                                      bad:"Un junior tratta un LBO come un'acquisizione semplice. Il leverage non viene strutturato. Il deal salta."},
+  {letter:"D",name:"Valore deal",     desc:"Importo in milioni €",    explain:"Determina la fee dello studio, la priorità del team, le risorse allocate. Un deal da €800M non può avere lo stesso presidio di uno da €12M.",                                                             bad:"Un socio dedica 3 giorni a un deal da €18M e ignora quello da €680M. Fee persa, cliente perso."},
+  {letter:"E",name:"Fase",            desc:"Stadio del processo",     explain:"Onboarding → Lettera d'intenti → Term Sheet → Due Diligence → Negoziazione → Signing → Closing. Ogni fase ha scadenze e rischi specifici.",                                                              bad:"Nessuno sa se la DD è finita o in corso. Il cliente chiede aggiornamenti, lo studio non sa rispondere."},
+  {letter:"F",name:"Socio ref.",      desc:"Socio responsabile",      explain:"Il socio che risponde al cliente. È la persona che firma, va alle riunioni di board, prende le decisioni finali.",                                                                                        bad:"Il cliente chiama, tre soci danno tre risposte diverse. Credibilità azzerata."},
+  {letter:"G",name:"Responsabile",    desc:"Chi la gestisce",         explain:"Chi segue la pratica giorno per giorno. Questa è la colonna usata per i filter view e per la redistribuzione automatica.",                                                                               bad:"Una scadenza slitta perché «pensavo ci pensasse lui». Lo studio risponde con soldi e reputazione."},
+  {letter:"H",name:"Data apertura",   desc:"Inizio pratica",          explain:"Serve per capire se una pratica è bloccata da troppo tempo e per la pianificazione delle risorse.",                                                                                                       bad:"Una pratica aperta 18 mesi fa viene scoperta casualmente. Rischio contenzioso."},
+  {letter:"I",name:"Scadenza",        desc:"Data limite",             explain:"La data entro cui deve succedere qualcosa di preciso. Spesso è un termine perentorio con penali contrattuali.",                                                                                           bad:"La scadenza passa. La controparte attiva una penale da €500K. Lo studio paga."},
+  {letter:"J",name:"Giorni alla scad.",desc:"=I-TODAY()",            explain:"La formula =I5-TODAY() calcola automaticamente i giorni rimanenti ogni volta che si apre il foglio.",                                                                                                      bad:"Qualcuno aggiorna a mano ogni settimana. Si dimentica. Si sbaglia."},
+  {letter:"K",name:"Semaforo",        desc:"Formula IF annidata",     explain:"La formula IF legge i giorni: Urgentissimo (≤7), Critico (≤14), Attenzione (≤30), Ok. Il foglio decide da solo.",                                                                                        bad:"Ogni lunedì un paralegal scorre 30 righe manualmente. 40 minuti persi, errori garantiti."},
+  {letter:"L",name:"Fee stimata",     desc:"Compenso previsto",       explain:"Il compenso atteso da quella pratica. Serve per la pianificazione finanziaria.",                                                                                                                          bad:"Il managing partner scopre il gap di budget a bilancio chiuso."},
+  {letter:"M",name:"Note operative",  desc:"Contesto libero",         explain:"Tutto quello che non entra nelle colonne strutturate. È la memoria operativa del team.",                                                                                                                 bad:"Un nuovo collaboratore commette una gaffe con il cliente. Il contesto era in testa al socio."},
+  {letter:"N",name:"Priorità",        desc:"Urgentissimo/Critico/Ok", explain:"Categoria di urgenza. Alimenta il sistema di redistribuzione automatica e il calcolo del Peso.",                                                                                                         bad:"Ogni lunedì la riunione dura 45 minuti per decidere cosa è urgente. Con questa colonna: 3 minuti."},
+  {letter:"O",name:"Peso",            desc:"1–3 da priorità",         explain:"Valore numerico per il calcolo della saturazione del team. Urgentissimo=3, Critico=2, Attenzione/Ok=1. È il cuore del bilanciamento automatico.",                                                        bad:"Senza peso: il sistema non distingue una pratica da €890M da una da €12M."},
+  {letter:"P",name:"Riassegnabile",   desc:"Sì / No",                 explain:"Se la pratica può essere redistribuita automaticamente in caso di assenza. Alcune pratiche sono troppo riservate per essere passate automaticamente.",                                                   bad:"Senza: lo script tenta di redistribuire anche pratiche riservate o bloccate. Errori critici."},
 ]
 
 export const GLOSSARIO = [
-  {termine:"Acquisizione",           semplice:"Compri un'azienda intera o una parte. A paga B per prendere il controllo di C.",                                                                  rischio:"Se la Due Diligence è superficiale, scopri i problemi solo dopo il closing. Valore distrutto: può essere il 100% dell'investimento."},
-  {termine:"Merger / Fusione",       semplice:"Due aziende diventano una sola. Come due fiumi che si uniscono.",                                                                                 rischio:"Cultura aziendale, sistemi, persone: tutto va ricombinato. Il 70% dei merger fallisce per fattori umani, non finanziari."},
-  {termine:"Due Diligence",          semplice:"L'ispezione prima di comprare. Controlli conti, contratti, debiti nascosti, contenziosi legali.",                                                 rischio:"Saltarla significa scoprire scheletri nell'armadio a deal chiuso. Rischio: nullità del contratto o perdite enormi."},
-  {termine:"Term Sheet",             semplice:"Il contratto di fidanzamento. Acquirente e venditore si accordano sui punti chiave prima dei dettagli legali.",                                   rischio:"Ogni punto vago costerà 10x in negoziazione finale."},
-  {termine:"Lettera d'intenti",      semplice:"Dichiari formalmente che vuoi trattare. Non vincola economicamente, ma crea aspettative legali.",                                                 rischio:"Se esclusiva e riservatezza non sono chiare, il venditore può trattare con altri."},
-  {termine:"Signing",                semplice:"Il giorno della firma del contratto definitivo. Le parti si impegnano legalmente.",                                                               rischio:"Condizioni sospensive non chiuse → il deal può saltare anche dopo la firma."},
-  {termine:"Closing",                semplice:"Il giorno in cui i soldi passano e la proprietà cambia.",                                                                                        rischio:"Problemi tecnici, fiscali o regolatori dell'ultimo minuto possono bloccare tutto."},
-  {termine:"Carve-out",              semplice:"Separi e vendi solo un pezzo di un'azienda. Come togliere una fetta da una torta.",                                                              rischio:"Costo operativo spesso sottostimato del 30-40%."},
-  {termine:"LBO — Leveraged Buyout", semplice:"Compri un'azienda usando principalmente debito. L'azienda stessa ripaga il prestito con i suoi utili futuri.",                                   rischio:"Se i flussi di cassa calano, l'azienda non riesce a ripagare. Rischio fallimento."},
-  {termine:"Exit / Uscita",          semplice:"Il momento in cui un investitore vende la sua quota e incassa il ritorno.",                                                                       rischio:"Timing sbagliato = vendere a multipli bassi."},
-  {termine:"NPL — Non Performing Loan", semplice:"Crediti bancari non rimborsati che le banche vendono a sconto.",                                                                              rischio:"Valutazione sbagliata del tasso di recupero = perdite strutturali."},
-  {termine:"Passaggio generazionale", semplice:"Trasferimento di un'azienda familiare alla generazione successiva o a terzi.",                                                                  rischio:"Senza pianificazione: litigi familiari, imposta di successione elevata, perdita del controllo."},
-  {termine:"Fee di advisory",        semplice:"Il compenso dello studio. Di solito 0.5-2% del valore del deal.",                                                                                rischio:"Fee non strutturata = advisor non allineato agli interessi del cliente."},
-  {termine:"Saturazione team",       semplice:"Quanto è carico un membro del team rispetto alla sua capacità massima. 80%+ = zona rischio.",                                                    rischio:"Chi è al 90% continua a ricevere pratiche. Errori, burnout, scadenze saltate."},
-  {termine:"Redistribuzione automatica", semplice:"Quando qualcuno è assente, il sistema riassegna le sue pratiche a chi ha più capacità — bilanciando il carico automaticamente.",             rischio:"Senza: le pratiche rimangono orfane finché qualcuno se ne accorge. Nel M&A può voler dire perdere un deal."},
+  {termine:"Acquisizione",               semplice:"Compri un'azienda intera o una parte. A paga B per prendere il controllo di C.",                                                            rischio:"Se la Due Diligence è superficiale, scopri i problemi solo dopo il closing. Valore distrutto: può essere il 100% dell'investimento."},
+  {termine:"Merger / Fusione",           semplice:"Due aziende diventano una sola. Come due fiumi che si uniscono.",                                                                          rischio:"Cultura aziendale, sistemi, persone: tutto va ricombinato. Il 70% dei merger fallisce per fattori umani, non finanziari."},
+  {termine:"Due Diligence",              semplice:"L'ispezione prima di comprare. Controlli conti, contratti, debiti nascosti, contenziosi legali.",                                          rischio:"Saltarla significa scoprire scheletri nell'armadio a deal chiuso. Rischio: nullità del contratto o perdite enormi."},
+  {termine:"Term Sheet",                 semplice:"Il contratto di fidanzamento. Acquirente e venditore si accordano sui punti chiave prima dei dettagli legali.",                            rischio:"Ogni punto vago costerà 10x in negoziazione finale."},
+  {termine:"Lettera d'intenti",          semplice:"Dichiari formalmente che vuoi trattare. Non vincola economicamente, ma crea aspettative legali.",                                          rischio:"Se esclusiva e riservatezza non sono chiare, il venditore può trattare con altri."},
+  {termine:"Signing",                    semplice:"Il giorno della firma del contratto definitivo. Le parti si impegnano legalmente.",                                                        rischio:"Condizioni sospensive non chiuse → il deal può saltare anche dopo la firma."},
+  {termine:"Closing",                    semplice:"Il giorno in cui i soldi passano e la proprietà cambia.",                                                                                  rischio:"Problemi tecnici, fiscali o regolatori dell'ultimo minuto possono bloccare tutto."},
+  {termine:"Carve-out",                  semplice:"Separi e vendi solo un pezzo di un'azienda. Come togliere una fetta da una torta.",                                                       rischio:"Costo operativo spesso sottostimato del 30-40%."},
+  {termine:"LBO — Leveraged Buyout",     semplice:"Compri un'azienda usando principalmente debito. L'azienda stessa ripaga il prestito con i suoi utili futuri.",                            rischio:"Se i flussi di cassa calano, l'azienda non riesce a ripagare. Rischio fallimento."},
+  {termine:"Exit / Uscita",              semplice:"Il momento in cui un investitore vende la sua quota e incassa il ritorno.",                                                                rischio:"Timing sbagliato = vendere a multipli bassi."},
+  {termine:"NPL — Non Performing Loan",  semplice:"Crediti bancari non rimborsati che le banche vendono a sconto.",                                                                          rischio:"Valutazione sbagliata del tasso di recupero = perdite strutturali."},
+  {termine:"Passaggio generazionale",    semplice:"Trasferimento di un'azienda familiare alla generazione successiva o a terzi.",                                                             rischio:"Senza pianificazione: litigi familiari, imposta di successione elevata, perdita del controllo."},
+  {termine:"Fee di advisory",            semplice:"Il compenso dello studio. Di solito 0.5-2% del valore del deal.",                                                                         rischio:"Fee non strutturata = advisor non allineato agli interessi del cliente."},
+  {termine:"Saturazione team",           semplice:"Quanto è carico un membro del team rispetto alla sua capacità massima. 80%+ = zona rischio.",                                             rischio:"Chi è al 90% continua a ricevere pratiche. Errori, burnout, scadenze saltate."},
+  {termine:"Redistribuzione automatica", semplice:"Quando qualcuno è assente, il sistema riassegna le sue pratiche a chi ha più capacità — bilanciando il carico automaticamente.",          rischio:"Senza: le pratiche rimangono orfane finché qualcuno se ne accorge. Nel M&A può voler dire perdere un deal."},
 ]
 
 export const GUIDA = [
-  {fase:"Fase 1 — Contesto",          durata:"15 min", tuFai:"Proietti l'app. Racconti BSC e il problema: 30 pratiche, nessun sistema, scadenze che saltano. Mostri la pipeline e i semafori rossi.",                                                                                                                          loroFanno:"Aprono il Google Sheet condiviso. Esplorano la pipeline.",                                                                                          domanda:"Se fossi il managing partner, come scopriresti le urgenze? Quanto ci vorresti?"},
-  {fase:"Fase 2 — Colonne A→P",       durata:"20 min", tuFai:"Clicchi ogni colonna sull'app. Spieghi cosa contiene e il rischio in rosso. J e K le salti per ora. Sottolinea O (Peso) e P (Riassegnabile): «alimentano il sistema automatico».",                                                                                  loroFanno:"Seguono le colonne sul loro sheet. Possono scorrere le 30 pratiche.",                                                                               domanda:"Quale colonna vi manca di più nel vostro lavoro quotidiano?"},
-  {fase:"Fase 3 — Formule J e K",     durata:"15 min", tuFai:"Sul Sheet: J5 → =I5-TODAY() → trascini. K5 → formula IF → trascini. I semafori si accendono. Mostri formattazione condizionale.",                                                                                                                                   loroFanno:"Replicano J5 e K5 e trascinano.",                                                                                                                   domanda:"Chi avrebbe scoperto queste urgenze senza questo sistema? E quando?"},
-  {fase:"Fase 4 — Filter view",       durata:"20 min", tuFai:"Crei il filter view 'Saso' in diretta: Dati → Visualizzazioni filtro → Crea nuova → G=Saso → rinomini. Poi a turno ognuno crea il suo.",                                                                                                                            loroFanno:"Mentre uno crea il suo, gli altri cliccano la pill del compagno sull'app: quante pratiche urgenti ha?",                                             domanda:"Cosa cambierebbe se ogni lunedì vedessi già solo le tue pratiche?"},
-  {fase:"Fase 5 — Team & saturazione",durata:"10 min", tuFai:"Apri tab Sistema → Team sull'app. Mostri le saturazioni reali: Giampaolo all'80% è in Attenzione. Spiega come il Peso si calcola dalla Priorità.",                                                                                                                  loroFanno:"Guardano la sezione Team sull'app.",                                                                                                                domanda:"Nel vostro lavoro, sapete in tempo reale chi è sovraccarico? Come lo scoprite oggi?"},
-  {fase:"Fase 6 — Redistribuzione",   durata:"15 min", tuFai:"Sul Sheet: imposti Saso = Assente. «Simula redistribuzione» → mostri il Preview: 4 pratiche ridistribuite, BSC-001 orfana (peso 3, nessuno disponibile). Poi lanci la versione live. Il Log si popola.",                                                            loroFanno:"Guardano il Log popolarsi in tempo reale.",                                                                                                         domanda:"Quanto vale un sistema che redistribuisce da solo quando qualcuno è assente?"},
-  {fase:"Fase 7 — Email report",      durata:"10 min", tuFai:"Lanci «Invia report scadenze». Aspetti. L'email arriva: urgenze + saturazione team. Mostri il trigger settimanale automatico.",                                                                                                                                      loroFanno:"Guardano l'email arrivare. Silenzio, poi reazione.",                                                                                                domanda:"Adesso sapete cosa chiedere a un developer o a un AI. Quanto vale questo sistema nel vostro contesto?"},
-  {fase:"Fase 8 — Debrief",           durata:"10 min", tuFai:"Giri la stanza — domanda finale a ognuno. Dai il link dell'app. Chiudi con la frase finale.",                                                                                                                                                                       loroFanno:"Ognuno risponde sul proprio contesto. Salvano il link.",                                                                                            domanda:"Nel tuo lavoro, qual è la colonna J che manca? Cosa redistribuiresti in automatico se potessi?"},
+  {
+    fase:"Fase 1 — Contesto", durata:"15 min",
+    tuFai:"Proietti l'app. Spieghi cos'è Black Swan Capital e perché è messa male senza strumenti. Clicchi ogni colonna A→P e leggi la spiegazione con il rischio in rosso.",
+    loroFanno:"Aprono il Google Sheet condiviso. Seguono le colonne mentre le spieghi.",
+    domanda:"Se fossi il managing partner, come scopriresti le urgenze? Quanto ci vorresti?"
+  },
+  {
+    fase:"Fase 2 — Formula giorni", durata:"10 min",
+    tuFai:"Sul Google Sheet: clicchi J5 → digiti =I5-TODAY() → invio → trascini fino a J34. Il foglio ora sa quanti giorni mancano ad ogni scadenza.",
+    loroFanno:"Seguono sul loro sheet e replicano la formula su J5. Trascinano.",
+    domanda:"Cosa succederebbe se aggiornassi questo a mano ogni settimana?"
+  },
+  {
+    fase:"Fase 3 — Formula semaforo", durata:"10 min",
+    tuFai:"Clicchi K5 → digiti: =IF(J5<=7,\"Urgente\",IF(J5<=14,\"Critico\",IF(J5<=30,\"Attenzione\",\"Ok\"))) → trascini fino a K34. Mostri la formattazione condizionale.",
+    loroFanno:"Replicano su K5 e trascinano. Vedono i semafori accendersi.",
+    domanda:"Chi avrebbe scoperto le scadenze critiche senza questo sistema? E quando?"
+  },
+  {
+    fase:"Fase 4 — Filter view", durata:"20 min",
+    tuFai:"La colonna G ha già i vostri nomi. Crei il filter view 'Saso' in diretta: Dati → Visualizzazioni filtro → Crea nuova → G=Saso → rinomini 'Saso'. Mostri che gli altri vedono ancora tutto.",
+    loroFanno:"A turno (2 min ciascuno): Giampaolo, Gianluca, Francesco, Camillo, Carlo, Graziano creano il loro. Mentre uno crea, gli altri cliccano la pill del compagno sull'app.",
+    domanda:"Quante pratiche urgenti ha Giampaolo? Come lo vedresti senza filter view?"
+  },
+  {
+    fase:"Fase 5 — WOW finale", durata:"10 min",
+    tuFai:"Mostri lo script Apps Script (solo lettura, non lo scrivi). Esegui il trigger manuale → arriva l'email con le scadenze. Dici: «Questo gira ogni lunedì senza che nessuno premi niente».",
+    loroFanno:"Guardano. Non toccano niente. L'obiettivo è capire che esiste e cosa fa.",
+    domanda:"Cosa cambierebbe nel vostro lavoro se aveste questo? Chi vi serve per costruirlo? Quanto ci vuole? Adesso sapete rispondere."
+  },
+]
+
+// Slide per la modalità presentazione
+export const SLIDES = [
+  {
+    id: 1,
+    tipo: "copertina",
+    titolo: "I Cigni Neri",
+    sottotitolo: "Workshop · Google Sheets & Automazioni",
+    body: "Caso studio: Black Swan Capital — M&A Advisory",
+  },
+  {
+    id: 2,
+    tipo: "problema",
+    titolo: "Il problema",
+    body: "Black Swan Capital gestisce 30 pratiche M&A per un valore totale di €7.8 miliardi. Nessun sistema. Tutto su email e file sparsi. Tre scadenze critiche stanno per saltare.",
+    highlight: "Chi se ne accorge? Quando?",
+  },
+  {
+    id: 3,
+    tipo: "numeri",
+    titolo: "La situazione oggi",
+    metriche: [
+      {label:"Pratiche attive", valore:"30", sub:"in gestione"},
+      {label:"Portfolio totale", valore:"€7.8B", sub:"deal in corso"},
+      {label:"Urgenze attive", valore:"7", sub:"Urgentissimo + Critico", danger:true},
+      {label:"Saturazione media", valore:"55.7%", sub:"team sotto pressione"},
+    ]
+  },
+  {
+    id: 4,
+    tipo: "obiettivo",
+    titolo: "L'obiettivo del workshop",
+    body: "Non imparare a usare Sheets. Capire cosa chiedere a chi lo usa per voi — e controllare il risultato.",
+    highlight: "Delega consapevole.",
+  },
+  {
+    id: 5,
+    tipo: "agenda",
+    titolo: "Agenda · 2h 30min",
+    items: [
+      "Fase 1 · Contesto e colonne A→P · 15 min",
+      "Fase 2 · Formula giorni =I5-TODAY() · 10 min",
+      "Fase 3 · Formula semaforo IF annidata · 10 min",
+      "Fase 4 · Filter view personalizzati · 20 min",
+      "Pausa · 10 min",
+      "Fase 5 · Script & email automatica · 10 min",
+      "Debrief · domanda finale a ognuno · 15 min",
+    ]
+  },
+  {
+    id: 6,
+    tipo: "concetto",
+    titolo: "Cosa è un Google Sheet davvero",
+    body: "Non è Excel sul cloud. È un database collaborativo in tempo reale con un motore di automazione integrato.",
+    highlight: "Tre livelli: dati → viste filtrate → azioni automatiche.",
+  },
+  {
+    id: 7,
+    tipo: "formula",
+    titolo: "La formula che cambia tutto",
+    formula: "=I5-TODAY()",
+    spiegazione: "Calcola i giorni alla scadenza da sola, ogni giorno, senza che nessuno la aggiorni.",
+    domanda: "Quante ore al mese risparmia questa formula?",
+  },
+  {
+    id: 8,
+    tipo: "formula",
+    titolo: "Il semaforo automatico",
+    formula: '=IF(J5<=7,"Urgente",IF(J5<=14,"Critico",IF(J5<=30,"Attenzione","Ok")))',
+    spiegazione: "Il foglio legge i giorni e decide da solo il colore. Nessuno lo tocca.",
+    domanda: "Chi avrebbe trovato le 7 urgenze senza questo?",
+  },
+  {
+    id: 9,
+    tipo: "filterview",
+    titolo: "Filter view — il superpotere nascosto",
+    body: "Ogni partecipante crea la propria vista sul foglio condiviso. Gli altri vedono ancora tutto. La vista è tua, il foglio è di tutti.",
+    highlight: "Dati → Visualizzazioni filtro → Crea nuova",
+  },
+  {
+    id: 10,
+    tipo: "redistribuzione",
+    titolo: "Redistribuzione automatica",
+    body: "Saso è assente. Il sistema legge le sue pratiche, calcola chi ha più capacità disponibile, ridistribuisce bilanciando il carico e notifica i nuovi responsabili via email.",
+    highlight: "BSC-001 rimane orfana: nessuno ha abbastanza capacità. Il sistema lo segnala.",
+  },
+  {
+    id: 11,
+    tipo: "wow",
+    titolo: "Il momento WOW",
+    body: "Lo script gira. Aspetti in silenzio.",
+    highlight: "L'email arriva.",
+    sub: "Questo gira ogni lunedì alle 8 senza che nessuno premi niente.",
+  },
+  {
+    id: 12,
+    tipo: "chiusura",
+    titolo: "Cosa portate a casa",
+    items: [
+      "Il Google Sheet operativo con i vostri filter view",
+      "Il link a questa app — resta online",
+      "Le 3 domande per delegare bene qualsiasi automazione",
+    ],
+    frase: "Non è usare Sheets. È sapere cosa chiedere a chi lo usa per voi.",
+  },
 ]
