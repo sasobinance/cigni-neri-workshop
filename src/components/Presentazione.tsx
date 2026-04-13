@@ -15,7 +15,7 @@ function Pill({label,val,danger}:{label:string;val:string;danger?:boolean}){
 
 function SlideCopertina({s}:{s:typeof SLIDES[0]}){
   return(
-    <div style={{minHeight:460,display:'flex',flexDirection:'column',justifyContent:'center',alignItems:'center',background:A,borderRadius:16,padding:'48px 40px',textAlign:'center'}}>
+    <div style={{flex:1,display:'flex',flexDirection:'column',justifyContent:'center',alignItems:'center',background:A,borderRadius:16,padding:'48px 40px',textAlign:'center'}}>
       <img src="/logo.png" alt="logo" style={{width:72,height:72,objectFit:'contain',marginBottom:28,opacity:.9}}/>
       <div style={{fontSize:32,fontWeight:700,color:W,marginBottom:12,lineHeight:1.2}}>{s.titolo}</div>
       <div style={{fontSize:17,color:'#A0BFA8',marginBottom:10,fontWeight:500}}>{String(s.sottotitolo||'')}</div>
@@ -26,7 +26,7 @@ function SlideCopertina({s}:{s:typeof SLIDES[0]}){
 
 function SlideProblema({s}:{s:typeof SLIDES[0]}){
   return(
-    <div style={{minHeight:460,display:'flex',flexDirection:'column',justifyContent:'center',background:W,borderRadius:16,padding:'40px',border:'0.5px solid #E4E4E0'}}>
+    <div style={{flex:1,display:'flex',flexDirection:'column',justifyContent:'center',background:W,borderRadius:16,padding:'40px',border:'0.5px solid #E4E4E0'}}>
       <div style={{fontSize:11,fontWeight:700,color:O,textTransform:'uppercase',letterSpacing:'.1em',marginBottom:16}}>Il contesto</div>
       <div style={{fontSize:28,fontWeight:700,color:A,marginBottom:20,lineHeight:1.3}}>{s.titolo}</div>
       <div style={{fontSize:16,color:'#3A3A38',lineHeight:1.8,marginBottom:24}}>{String(s.corpo||'')}</div>
@@ -39,7 +39,7 @@ function SlideProblema({s}:{s:typeof SLIDES[0]}){
 function SlideCosèScript({s}:{s:typeof SLIDES[0]}){
   const punti=(s as any).punti as string[]
   return(
-    <div style={{minHeight:460,display:'flex',flexDirection:'column',justifyContent:'center',background:W,borderRadius:16,padding:'40px',border:'0.5px solid #E4E4E0'}}>
+    <div style={{flex:1,display:'flex',flexDirection:'column',justifyContent:'center',background:W,borderRadius:16,padding:'40px',border:'0.5px solid #E4E4E0'}}>
       <div style={{fontSize:11,fontWeight:700,color:O,textTransform:'uppercase',letterSpacing:'.1em',marginBottom:16}}>Prima di partire</div>
       <div style={{fontSize:26,fontWeight:700,color:A,marginBottom:24}}>{s.titolo}</div>
       <div style={{display:'flex',flexDirection:'column',gap:10,marginBottom:24}}>
@@ -57,7 +57,7 @@ function SlideCosèScript({s}:{s:typeof SLIDES[0]}){
 
 function SlideCodice({s}:{s:typeof SLIDES[0]}){
   return(
-    <div style={{minHeight:460,display:'flex',flexDirection:'column',justifyContent:'center',background:W,borderRadius:16,padding:'40px',border:'0.5px solid #E4E4E0'}}>
+    <div style={{flex:1,display:'flex',flexDirection:'column',justifyContent:'center',background:W,borderRadius:16,padding:'40px',border:'0.5px solid #E4E4E0'}}>
       <div style={{fontSize:26,fontWeight:700,color:A,marginBottom:20}}>{s.titolo}</div>
       <div style={{background:'#1E1E1E',borderRadius:10,padding:'20px 24px',fontFamily:'monospace',fontSize:12,color:'#A0D0B0',lineHeight:1.7,overflowX:'auto',whiteSpace:'pre',marginBottom:18}}>
         {String((s as any).codice||'')}
@@ -70,7 +70,7 @@ function SlideCodice({s}:{s:typeof SLIDES[0]}){
 function SlideBSC({s}:{s:typeof SLIDES[0]}){
   const d=(s as any).dati as Record<string,string>
   return(
-    <div style={{minHeight:460,display:'flex',flexDirection:'column',justifyContent:'center',background:W,borderRadius:16,padding:'40px',border:'0.5px solid #E4E4E0'}}>
+    <div style={{flex:1,display:'flex',flexDirection:'column',justifyContent:'center',background:W,borderRadius:16,padding:'40px',border:'0.5px solid #E4E4E0'}}>
       <div style={{fontSize:11,fontWeight:700,color:O,textTransform:'uppercase',letterSpacing:'.1em',marginBottom:16}}>Il caso studio</div>
       <div style={{fontSize:26,fontWeight:700,color:A,marginBottom:24}}>{s.titolo}</div>
       <div style={{display:'flex',gap:10,flexWrap:'wrap',marginBottom:22}}>
@@ -87,7 +87,7 @@ function SlideBSC({s}:{s:typeof SLIDES[0]}){
 function SlideColonne({s}:{s:typeof SLIDES[0]}){
   const esempi=(s as any).esempi as {col:string;senza:string}[]
   return(
-    <div style={{minHeight:460,display:'flex',flexDirection:'column',justifyContent:'center',background:W,borderRadius:16,padding:'40px',border:'0.5px solid #E4E4E0'}}>
+    <div style={{flex:1,display:'flex',flexDirection:'column',justifyContent:'center',background:W,borderRadius:16,padding:'40px',border:'0.5px solid #E4E4E0'}}>
       <div style={{fontSize:26,fontWeight:700,color:A,marginBottom:12}}>{s.titolo}</div>
       <div style={{fontSize:14,color:G,lineHeight:1.6,marginBottom:20}}>{String(s.corpo||'')}</div>
       <div style={{display:'flex',flexDirection:'column',gap:10}}>
@@ -104,7 +104,7 @@ function SlideColonne({s}:{s:typeof SLIDES[0]}){
 
 function SlideFormula({s}:{s:typeof SLIDES[0]}){
   return(
-    <div style={{minHeight:460,display:'flex',flexDirection:'column',justifyContent:'center',background:W,borderRadius:16,padding:'40px',border:'0.5px solid #E4E4E0'}}>
+    <div style={{flex:1,display:'flex',flexDirection:'column',justifyContent:'center',background:W,borderRadius:16,padding:'40px',border:'0.5px solid #E4E4E0'}}>
       <div style={{fontSize:11,fontWeight:700,color:O,textTransform:'uppercase',letterSpacing:'.1em',marginBottom:16}}>Formula live</div>
       <div style={{fontSize:24,fontWeight:700,color:A,marginBottom:22,lineHeight:1.3}}>{s.titolo}</div>
       <div style={{background:'#1E1E1E',borderRadius:10,padding:'18px 22px',fontFamily:'monospace',fontSize:14,color:'#A0D0B0',marginBottom:18,wordBreak:'break-all',lineHeight:1.6}}>{String((s as any).formula||'')}</div>
@@ -117,7 +117,7 @@ function SlideFormula({s}:{s:typeof SLIDES[0]}){
 function SlideFilterView({s}:{s:typeof SLIDES[0]}){
   const steps=(s as any).steps as string[]
   return(
-    <div style={{minHeight:460,display:'flex',flexDirection:'column',justifyContent:'center',background:W,borderRadius:16,padding:'40px',border:'0.5px solid #E4E4E0'}}>
+    <div style={{flex:1,display:'flex',flexDirection:'column',justifyContent:'center',background:W,borderRadius:16,padding:'40px',border:'0.5px solid #E4E4E0'}}>
       <div style={{fontSize:26,fontWeight:700,color:A,marginBottom:8}}>{s.titolo}</div>
       <div style={{fontSize:16,color:G,marginBottom:22,fontWeight:500}}>{String(s.corpo||'')}</div>
       <div style={{display:'flex',flexDirection:'column',gap:8,marginBottom:20}}>
@@ -135,7 +135,7 @@ function SlideFilterView({s}:{s:typeof SLIDES[0]}){
 
 function SlideRedistribuzione({s}:{s:typeof SLIDES[0]}){
   return(
-    <div style={{minHeight:460,display:'flex',flexDirection:'column',justifyContent:'center',background:W,borderRadius:16,padding:'40px',border:'0.5px solid #E4E4E0'}}>
+    <div style={{flex:1,display:'flex',flexDirection:'column',justifyContent:'center',background:W,borderRadius:16,padding:'40px',border:'0.5px solid #E4E4E0'}}>
       <div style={{fontSize:11,fontWeight:700,color:O,textTransform:'uppercase',letterSpacing:'.1em',marginBottom:16}}>Automazione avanzata</div>
       <div style={{fontSize:26,fontWeight:700,color:A,marginBottom:18}}>{s.titolo}</div>
       <div style={{fontSize:15,color:'#3A3A38',lineHeight:1.8,marginBottom:16}}>{String(s.corpo||'')}</div>
@@ -147,7 +147,7 @@ function SlideRedistribuzione({s}:{s:typeof SLIDES[0]}){
 
 function SlideWow({s}:{s:typeof SLIDES[0]}){
   return(
-    <div style={{minHeight:460,display:'flex',flexDirection:'column',justifyContent:'center',alignItems:'center',background:A,borderRadius:16,padding:'48px 40px',textAlign:'center'}}>
+    <div style={{flex:1,display:'flex',flexDirection:'column',justifyContent:'center',alignItems:'center',background:A,borderRadius:16,padding:'48px 40px',textAlign:'center'}}>
       <div style={{fontSize:11,fontWeight:700,color:'#A0BFA8',textTransform:'uppercase',letterSpacing:'.1em',marginBottom:20}}>Momento WOW</div>
       <div style={{fontSize:28,fontWeight:700,color:W,marginBottom:16}}>{s.titolo}</div>
       <div style={{fontSize:16,color:'#ccc',marginBottom:28,lineHeight:1.6}}>{String(s.corpo||'')}</div>
@@ -161,7 +161,7 @@ function SlideScoring({s}:{s:typeof SLIDES[0]}){
   const pesi=(s as any).pesi as {label:string;pct:string}[]
   const colors=['#C0392B','#9A6B00',O,'#3D3D3D']
   return(
-    <div style={{minHeight:460,display:'flex',flexDirection:'column',justifyContent:'center',background:W,borderRadius:16,padding:'40px',border:'0.5px solid #E4E4E0'}}>
+    <div style={{flex:1,display:'flex',flexDirection:'column',justifyContent:'center',background:W,borderRadius:16,padding:'40px',border:'0.5px solid #E4E4E0'}}>
       <div style={{fontSize:11,fontWeight:700,color:O,textTransform:'uppercase',letterSpacing:'.1em',marginBottom:16}}>Livello 3</div>
       <div style={{fontSize:24,fontWeight:700,color:A,marginBottom:18}}>{s.titolo}</div>
       <div style={{display:'flex',gap:10,flexWrap:'wrap',marginBottom:16}}>
@@ -180,7 +180,7 @@ function SlideScoring({s}:{s:typeof SLIDES[0]}){
 
 function SlideSorpresa(){
   return(
-    <div style={{minHeight:460,display:'flex',flexDirection:'column',justifyContent:'center',background:A,borderRadius:16,padding:'40px',textAlign:'center'}}>
+    <div style={{flex:1,display:'flex',flexDirection:'column',justifyContent:'center',background:A,borderRadius:16,padding:'40px',textAlign:'center'}}>
       <div style={{fontSize:11,fontWeight:700,color:'#A0BFA8',textTransform:'uppercase',letterSpacing:'.1em',marginBottom:20}}>La sorpresa</div>
       <div style={{fontSize:28,fontWeight:700,color:W,marginBottom:16}}>Adesso tocca a voi</div>
       <div style={{fontSize:15,color:'#ccc',lineHeight:1.7,marginBottom:28,maxWidth:500,margin:'0 auto 28px'}}>La stessa logica che avete visto su Black Swan Capital funziona in qualsiasi settore. Abbiamo preparato un file per ognuno di voi.</div>
@@ -200,7 +200,7 @@ function SlideSorpresa(){
 function SlideChiusura({s}:{s:typeof SLIDES[0]}){
   const items=(s as any).items as string[]
   return(
-    <div style={{minHeight:460,display:'flex',flexDirection:'column',justifyContent:'center',background:O,borderRadius:16,padding:'40px'}}>
+    <div style={{flex:1,display:'flex',flexDirection:'column',justifyContent:'center',background:O,borderRadius:16,padding:'40px'}}>
       <div style={{fontSize:11,fontWeight:700,color:'#A0D0B0',textTransform:'uppercase',letterSpacing:'.1em',marginBottom:16}}>Per concludere</div>
       <div style={{fontSize:26,fontWeight:700,color:W,marginBottom:24}}>{s.titolo}</div>
       <div style={{display:'flex',flexDirection:'column',gap:10,marginBottom:28}}>
@@ -240,16 +240,15 @@ export default function Presentazione(){
   const [cur,setCur]=useState(0)
   const [fs,setFs]=useState(false)
   const containerRef=useRef<HTMLDivElement>(null)
-  const total=SLIDES.length
-  const s=SLIDES[cur]
+  const VISIBLE=SLIDES.filter(s=>s.tipo!=='wow')
+  const total=VISIBLE.length
+  const s=VISIBLE[cur]
 
   const toggleFullscreen=useCallback(()=>{
     if(!document.fullscreenElement){
-      containerRef.current?.requestFullscreen()
-      setFs(true)
+      containerRef.current?.requestFullscreen().then(()=>setFs(true))
     } else {
-      document.exitFullscreen()
-      setFs(false)
+      document.exitFullscreen().then(()=>setFs(false))
     }
   },[])
 
@@ -259,53 +258,78 @@ export default function Presentazione(){
   const handleKey=(e:React.KeyboardEvent)=>{
     if(e.key==='ArrowRight'||e.key==='ArrowDown') next()
     if(e.key==='ArrowLeft'||e.key==='ArrowUp') prev()
-    if(e.key==='Escape'&&fs){document.exitFullscreen();setFs(false)}
   }
 
   return(
-    <div ref={containerRef} onKeyDown={handleKey} tabIndex={0} style={{outline:'none',background:fs?A:'transparent',minHeight:fs?'100vh':'auto',display:'flex',flexDirection:'column',padding:fs?'24px':0}}>
-
-      {/* Slide */}
-      <div style={{flex:1,marginBottom:14}}>
-        {renderSlide(s)}
+    <div
+      ref={containerRef}
+      onKeyDown={handleKey}
+      tabIndex={0}
+      style={{
+        outline:'none',
+        background:fs?A:'transparent',
+        display:'flex',
+        flexDirection:'column',
+        height:fs?'100vh':'auto',
+        padding:fs?'20px':'0',
+        overflow:'hidden',
+      }}
+    >
+      {/* Slide — occupa tutto lo spazio disponibile in fullscreen */}
+      <div style={{flex:1,minHeight:0,marginBottom:fs?12:14,display:'flex',flexDirection:'column'}}>
+        <div style={{
+          flex:1,
+          minHeight:0,
+          display:'flex',
+          flexDirection:'column',
+          borderRadius:16,
+          overflow:'hidden',
+        }}>
+          {renderSlide(s)}
+        </div>
       </div>
 
       {/* Controlli */}
-      <div style={{display:'flex',alignItems:'center',gap:10}}>
+      <div style={{display:'flex',alignItems:'center',gap:10,flexShrink:0}}>
         <button onClick={prev} disabled={cur===0} style={{
           padding:'8px 18px',borderRadius:999,fontSize:12,fontWeight:600,
-          background:cur===0?'#F2F2F0':A,color:cur===0?'#ccc':W,
+          background:cur===0?'rgba(255,255,255,0.1)':fs?'rgba(255,255,255,0.2)':A,
+          color:cur===0?'#888':W,
           border:'none',cursor:cur===0?'default':'pointer',fontFamily:'inherit',flexShrink:0,
         }}>← Indietro</button>
 
-        <div style={{flex:1,height:4,background:'#E4E4E0',borderRadius:99,overflow:'hidden'}}>
+        <div style={{flex:1,height:4,background:fs?'rgba(255,255,255,0.2)':'#E4E4E0',borderRadius:99,overflow:'hidden'}}>
           <div style={{width:`${((cur+1)/total)*100}%`,height:'100%',background:O,borderRadius:99,transition:'width .2s'}}/>
         </div>
 
-        <span style={{fontSize:11,color:G,flexShrink:0}}>{cur+1}/{total}</span>
+        <span style={{fontSize:11,color:fs?'rgba(255,255,255,0.6)':G,flexShrink:0}}>{cur+1}/{total}</span>
 
         <button onClick={toggleFullscreen} style={{
           padding:'7px 14px',borderRadius:999,fontSize:11,fontWeight:600,
-          background:'#E8F0EB',color:O,border:'none',cursor:'pointer',fontFamily:'inherit',flexShrink:0,
-        }}>{fs?'Esci schermo intero':'Schermo intero'}</button>
+          background:fs?'rgba(255,255,255,0.15)':'#E8F0EB',
+          color:fs?W:O,border:'none',cursor:'pointer',fontFamily:'inherit',flexShrink:0,
+        }}>{fs?'✕ Esci':'⛶ Schermo intero'}</button>
 
         <button onClick={next} disabled={cur===total-1} style={{
           padding:'8px 18px',borderRadius:999,fontSize:12,fontWeight:600,
-          background:cur===total-1?'#F2F2F0':O,color:cur===total-1?'#ccc':W,
+          background:cur===total-1?'rgba(255,255,255,0.1)':O,
+          color:cur===total-1?'#888':W,
           border:'none',cursor:cur===total-1?'default':'pointer',fontFamily:'inherit',flexShrink:0,
         }}>Avanti →</button>
       </div>
 
-      {/* Indice */}
-      <div style={{display:'flex',flexWrap:'wrap',gap:5,marginTop:10}}>
-        {SLIDES.map((sl,i)=>(
-          <button key={i} onClick={()=>setCur(i)} style={{
-            padding:'3px 9px',borderRadius:999,fontSize:9,fontWeight:cur===i?700:400,
-            background:cur===i?O:'#F2F2F0',color:cur===i?W:G,
-            border:'none',cursor:'pointer',fontFamily:'inherit',
-          }}>{i+1}. {sl.titolo}</button>
-        ))}
-      </div>
+      {/* Indice — nascosto in fullscreen */}
+      {!fs&&(
+        <div style={{display:'flex',flexWrap:'wrap',gap:5,marginTop:10}}>
+          {VISIBLE.map((sl,i)=>(
+            <button key={i} onClick={()=>setCur(i)} style={{
+              padding:'3px 9px',borderRadius:999,fontSize:9,fontWeight:cur===i?700:400,
+              background:cur===i?O:'#F2F2F0',color:cur===i?W:G,
+              border:'none',cursor:'pointer',fontFamily:'inherit',
+            }}>{i+1}. {sl.titolo}</button>
+          ))}
+        </div>
+      )}
     </div>
   )
 }
